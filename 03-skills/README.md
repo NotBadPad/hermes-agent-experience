@@ -8,9 +8,9 @@
 
 - [技能体系概览](#技能体系概览)
 - [内置技能清单](#内置技能清单)
+- [外部引入技能（addyosmani/agent-skills）](#外部引入技能)
 - [技能结构说明](#技能结构说明)
 - [自定义技能编写](#自定义技能编写)
-- [技能加载与调试](#技能加载与调试)
 - [最佳实践](#最佳实践)
 
 ---
@@ -39,8 +39,10 @@ Hermes 的技能体系采用分层设计：
 │   ├── server-ops         — 运维管理（小运）
 │   └── bot-street         — Bot 运营（botstreet）
 │
-└── 自定义技能（用户编写）
-    └── my-custom-skill/   — 按模板编写
+└── 外部引入技能（2026-05-11 从 addyosmani/agent-skills 引入）
+    ├── 小开: 17 个开发技能（API设计/代码审查/TDD/调试...）
+    ├── 小运: 2 个运维技能（CI/CD/发布上线）
+    └── 主 agent: 3 个通用技能（上下文工程/技能使用/想法打磨）
 ```
 
 ### 技能加载优先级
@@ -63,22 +65,6 @@ Hermes 的技能体系采用分层设计：
 | 默认启用 | ✅ 是 |
 | 用途 | 执行 shell 命令、脚本运行、安装依赖 |
 
-**提供工具**：
-- `run_command` — 执行任意 shell 命令，支持 stdout/stderr 捕获
-- `run_script` — 执行脚本文件
-- `check_output` — 检查命令输出，用于条件判断
-
-**示例**：
-```bash
-# 运行命令
-run_command("ls -la /home")
-
-# 安装依赖
-run_command("pip install requests")
-```
-
-> ⚠️ 安全提示：`terminal` 技能具有完整 shell 权限，请确保子代理沙箱隔离或信任限制。
-
 ---
 
 ### 2. `file` — 文件操作
@@ -88,18 +74,6 @@ run_command("pip install requests")
 | 类型 | 通用技能 |
 | 默认启用 | ✅ 是 |
 | 用途 | 读写文件、搜索内容、目录操作 |
-
-**提供工具**：
-- `read_file` — 读取文件内容（支持分页）
-- `write_file` — 写入/覆盖文件
-- `patch` — 精确替换编辑
-- `search_files` — 全文搜索 / 文件名搜索
-- `list_directory` — 列出目录内容
-
-**使用建议**：
-- 大文件使用 `offset` / `limit` 分页读取
-- 修改文件优先使用 `patch`（精确的 find-and-replace），避免全量重写
-- `search_files` 支持 content 搜索（rg）和 files 搜索（glob）
 
 ---
 
@@ -111,16 +85,6 @@ run_command("pip install requests")
 | 默认启用 | ✅ 是 |
 | 用途 | HTTP 请求、网页抓取、API 调用 |
 
-**提供工具**：
-- `http_get` — GET 请求
-- `http_post` — POST 请求
-- `fetch_webpage` — 获取并解析网页内容
-
-**常用场景**：
-- 调用 REST API
-- 抓取文档 / 公告
-- 与外部服务交互
-
 ---
 
 ### 4. `memory` — 持久记忆
@@ -130,19 +94,6 @@ run_command("pip install requests")
 | 类型 | 通用技能 |
 | 默认启用 | ✅ 是（可关闭） |
 | 用途 | 跨会话保存和检索信息 |
-
-**提供工具**：
-- `remember` — 写入一条记忆
-- `recall` — 检索相关记忆
-
-**配置项**（`config.yaml`）：
-```yaml
-memory:
-  memory_enabled: true          # 启用记忆
-  user_profile_enabled: true   # 启用用户画像
-  memory_char_limit: 2200      # 每条记忆最大字符
-  user_char_limit: 1375        # 画像最大字符
-```
 
 ---
 
@@ -154,8 +105,6 @@ memory:
 | 默认启用 | ✅ 是（CLI 模式） |
 | 用途 | 命令行输入输出、管道处理 |
 
-提供标准的 CLI 输入输出处理能力，包括 ANSI 转义、进度条、彩色输出等。
-
 ---
 
 ### 6. `hermes-telegram` / `hermes-discord` / `hermes-wechat`
@@ -166,7 +115,56 @@ memory:
 | Discord | `hermes-discord` | 频道消息、Slash 命令、音视频 |
 | 微信 | `hermes-wechat` | 微信消息处理、公众号管理 |
 
-> 注意：微信平台（WeChat/Weixin）集成需要额外的兼容层支持。
+---
+
+## 外部引入技能
+
+### 来源：[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)
+
+2026-05-11 从该仓库引入 22 个生产级工程技能，按 agent 角色分配。
+
+### 🐉 小开（代码专家）— 17 个技能
+
+| 技能 | 说明 | 字数 |
+|:-----|:-----|:---:|
+| `api-and-interface-design` | API 和接口设计指南 | 10K |
+| `browser-testing-with-devtools` | DevTools 浏览器测试 | 12K |
+| `code-review-and-quality` | 多维度代码审查 | 14K |
+| `code-simplification` | 代码简化重构 | 13K |
+| `debugging-and-error-recovery` | 系统化根因调试 | 10K |
+| `deprecation-and-migration` | 废弃与迁移管理 | 9K |
+| `doubt-driven-development` | 怀疑驱动开发（高价值） | **16K** |
+| `frontend-ui-engineering` | 生产级前端 UI | 11K |
+| `git-workflow-and-versioning` | Git 工作流最佳实践 | 10K |
+| `incremental-implementation` | 增量实现策略 | 9K |
+| `performance-optimization` | 性能优化方法论 | 11K |
+| `planning-and-task-breakdown` | 任务分解与规划 | 7K |
+| `security-and-hardening` | 安全加固实践 | 11K |
+| `source-driven-development` | 源码驱动开发 | 8K |
+| `spec-driven-development` | 规范驱动开发 | 8K |
+| `documentation-and-adrs` | 文档与架构决策记录 | 9K |
+| `test-driven-development` | 测试驱动开发（合并版） | — |
+
+### 🛠️ 小运（运维）— 2 个技能
+
+| 技能 | 说明 | 字数 |
+|:-----|:-----|:---:|
+| `ci-cd-and-automation` | CI/CD 自动化流水线 | 11K |
+| `shipping-and-launch` | 生产环境发布与上线 | 10K |
+
+### 🧠 Main Hermes — 3 个技能
+
+| 技能 | 说明 | 字数 |
+|:-----|:-----|:---:|
+| `context-engineering` | 上下文工程优化 | 11K |
+| `using-agent-skills` | 技能发现与调用 | 9K |
+| `idea-refine` | 结构化想法打磨 | 8K |
+
+### 亮点技能
+
+- 🔥 **`doubt-driven-development`** — 对每个非平凡决定做对抗性审查，减少幻觉
+- 🔥 **`code-review-and-quality`** — 比现有更系统的多维度代码审查流程
+- 🔥 **`context-engineering`** — 上下文管理优化，减少 Agent 幻觉
 
 ---
 
@@ -174,66 +172,33 @@ memory:
 
 ### 技能目录规范
 
-每个技能是一个独立的目录，位于 `skills/` 或子代理配置的 `skills/` 下：
+每个技能是一个独立目录，位于 `skills/` 下：
 
 ```
 skills/
 └── <skill-name>/
-    ├── config.yaml          ← 技能配置（必选）
-    ├── prompt.md            ← 技能提示词（可选）
-    └── tools/               ← 自定义工具（可选）
-        ├── tool_a.py
-        └── tool_b.py
+    └── SKILL.md             ← 技能定义（含 YAML frontmatter）
 ```
 
-### `config.yaml` 模板
+### SKILL.md 格式
 
 ```yaml
-# skills/<name>/config.yaml
-name: my-skill                # 技能名称（唯一）
-description: "技能描述"        # 简要说明
-version: 1.0.0                # 版本号
-enabled: true                 # 是否默认启用
+---
+name: my-skill
+description: "技能描述"
+version: 1.0.0
+---
 
-# 触发条件（可选）
-triggers:
-  - keyword: "部署"
-  - regex: "^(deploy|rollout|发布)"
-  - intent: "deployment"
+# 技能名称
 
-# 依赖的工具集
-toolsets:
-  - terminal
-  - file
+## Overview
+概述
 
-# 环境变量引用（可选）
-env:
-  MY_SKILL_KEY: ${MY_SKILL_ENV_VAR}
+## When to Use
+触发条件
 
-# 加载模式
-load_mode: lazy                # eager | lazy（按需加载）
-```
-
-### `prompt.md` 模板
-
-```markdown
-# Skill: <name>
-
-## 角色定义
-你是 [技能领域] 专家。
-
-## 能力范围
-- 能力 1
-- 能力 2
-- 能力 3
-
-## 约束条件
-- 约束 1
-- 约束 2
-
-## 输出规范
-- 格式要求
-- 示例
+## Steps
+操作步骤
 ```
 
 ---
@@ -243,87 +208,20 @@ load_mode: lazy                # eager | lazy（按需加载）
 ### 快速创建
 
 ```bash
-# 方式一：使用 Hermes CLI
-hermes skill create my-custom-skill
+# 使用 skill_manage 工具
+skill_manage(action='create', name='my-skill', content='...', category='devops')
 
-# 方式二：手动创建
-mkdir -p ~/.hermes/skills/my-custom-skill/{tools}
+# 或手动创建
+mkdir -p ~/.hermes/skills/category/my-skill/
 ```
 
-### 编写步骤
+### 编写要点
 
-1. **创建技能目录** — 按上述规范创建
-2. **编写 `config.yaml`** — 定义名称、触发条件、依赖工具
-3. **编写 `prompt.md`** — 定义技能的行为提示词
-4. **添加自定义工具**（可选）— 在 `tools/` 下编写 Python 工具函数
-5. **启用技能** — 在 `config.yaml` 中设置 `enabled: true`
-
-### 自定义工具示例
-
-```python
-# skills/my-custom-skill/tools/my_tool.py
-from hermes.tool import tool
-
-@tool(name="my_tool", description="我的自定义工具")
-def my_tool(param1: str, param2: int = 10) -> str:
-    """
-    工具逻辑实现。
-
-    Args:
-        param1: 参数说明
-        param2: 参数说明，默认 10
-
-    Returns:
-        处理结果
-    """
-    # 实现逻辑
-    result = f"处理 {param1} × {param2}"
-    return result
-```
-
-### 注册技能
-
-在 `config.yaml` 中引用自定义技能：
-
-```yaml
-# ~/.hermes/config.yaml 或 profiles/<name>/config.yaml
-skills:
-  - my-custom-skill          # 引用自定义技能
-```
-
----
-
-## 技能加载与调试
-
-### 查看已加载技能
-
-```bash
-hermes skill list            # 列出所有可用技能
-hermes skill list --active   # 列出当前活跃技能
-hermes skill info <name>     # 查看技能详情
-```
-
-### 技能调试
-
-```bash
-# 测试技能加载
-hermes skill test my-custom-skill
-
-# 查看技能日志
-tail -f ~/.hermes/logs/skills.log
-
-# 检查技能冲突
-hermes skill check-conflicts
-```
-
-### 常见问题
-
-| 问题 | 原因 | 解决 |
-|------|------|------|
-| 技能未生效 | 未在 config 中引用 | 添加 `skills: [skill-name]` |
-| 工具冲突 | 多个技能提供同名工具 | 检查优先级设置 |
-| 技能加载失败 | config.yaml 格式错误 | 用 `hermes skill test` 验证 |
-| 环境变量缺失 | `$` 引用但未设置 | 检查 `.env` 文件 |
+1. **YAML frontmatter** — 必须包含 `name` 和 `description`
+2. **触发条件** — 在 `## When to Use` 中明确
+3. **操作步骤** — 具体、可执行、带命令示例
+4. **踩坑记录** — `## Pitfalls` 记录常见问题
+5. **验证步骤** — 如何确认技能执行成功
 
 ---
 
@@ -331,35 +229,20 @@ hermes skill check-conflicts
 
 ### 1. 技能粒度控制
 
-- **一个技能只做一件事**——保持职责单一，便于复用和测试
-- **不要在一次技能中混入不相关的工具**——例如终端操作和网络请求应分为不同技能
+- 一个技能只做一件事 — 保持职责单一
+- 不要在一次技能中混入不相关的工具
 
-### 2. 提示词设计
+### 2. 子代理技能隔离
 
-- 在 `prompt.md` 中明确技能的**角色**、**能力边界**和**输出规范**
-- 使用具体示例指导 Agent 的行为
-- 设定明确的约束条件防止误操作
+- 每个子代理只加载与其角色相关的技能
+- 代码子代理不应加载金融分析技能
+- 通过 profile 配置精确控制
 
-### 3. 安全考量
+### 3. 技能维护
 
-- 敏感操作（删除、修改配置）应在工具层面做二次确认
-- 终端技能注意命令注入防护
-- 网络技能注意 API Key 等凭据保护
-
-### 4. 子代理技能隔离
-
-- 每个子代理应只加载与其角色相关的技能
-- 代码子代理（小开）不应加载金融分析技能
-- 通过 `config.yaml` 中的 `skills` 字段精确控制
-
-### 5. 版本管理
-
-```
-skills/
-├── deploy-tool/
-│   ├── v1/                  ← 保留旧版本
-│   └── config.yaml          ← 当前版本指向 v2
-```
+- 使用技能后如发现问题，立即用 `skill_manage(action='patch')` 修复
+- 过时的技能是负债，不是资产
+- 定期审查技能内容是否仍然准确
 
 ---
 

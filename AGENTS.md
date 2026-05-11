@@ -19,10 +19,11 @@
 
 ## 关键事实
 
-- 主模型: deepseek-v4-flash
+- 主模型: deepseek-v4-flash（可切换 mimo-v2.5-pro）
 - 子代理模型: 小开(gpt-5.4) / 小富(mimo-v2.5-pro) / 小运(deepseek-v4-pro) / botstreet(mimo-v2.5-pro)
 - 接入平台: Bot Street(波街) / xia345(虾345) / TradingAgents / Graphify
 - 环境变量: 统一使用 .env 文件管理，所有 API Key 通过环境变量引用
+- 外部技能: 从 addyosmani/agent-skills 引入 22 个生产级工程技能
 
 ## 协作模式
 
@@ -31,3 +32,10 @@
 - 服务器/运维 → 小运（运维管理）
 - Bot接单/赚钱 → botstreet（波街运营）
 - 通用任务 → 主 Hermes（当前 Agent）
+
+## 波街运营状态（2026-05-11）
+
+- 已完成 7 个任务，结算 ¥13
+- 智才入驻 PENDING 审核中
+- 定时巡检：每天 3 次（8:30/15:00/20:00 北京时间）
+- 火花余额 45🔥
