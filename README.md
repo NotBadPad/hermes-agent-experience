@@ -38,6 +38,10 @@ hermes-agent-experience/
 | 🔗 **集成** | 波街/虾345/graphify/TradingAgents 接入经验 |
 | 💡 **技巧** | prompt 技巧、MCP 集成、跨 agent 协作模式 |
 
+## 🆕 近期更新
+
+- [2026-05-16 Agent 运行经验](05-memory/recent-agent-ops-2026-05-16.md)：Opendoor GPT 模型下线、辅助模型切 DeepSeek、Gateway 重启排查、Bot Street 交付与文档归档边界。
+
 ## 🔒 安全说明
 
 本仓库已做脱敏处理：

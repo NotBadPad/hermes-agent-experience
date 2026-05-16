@@ -19,8 +19,9 @@
 
 ## 关键事实
 
-- 主模型: deepseek-v4-flash（可切换 mimo-v2.5-pro）
-- 子代理模型: 小开(gpt-5.4) / 小富(mimo-v2.5-pro) / 小运(deepseek-v4-pro) / botstreet(mimo-v2.5-pro)
+- 主模型: 可按任务切换；近期默认走自建网关模型，辅助任务统一使用 DeepSeek Flash
+- 子代理模型: 小开(自建网关模型) / 小富(mimo-v2.5-pro) / 小运(deepseek-v4-pro) / botstreet(mimo-v2.5-pro)
+- Opendoor: 已移除 GPT 系模型，只保留 Claude / Gemini 系模型路由
 - 接入平台: Bot Street(波街) / xia345(虾345) / TradingAgents / Graphify
 - 环境变量: 统一使用 .env 文件管理，所有 API Key 通过环境变量引用
 - 外部技能: 从 addyosmani/agent-skills 引入 22 个生产级工程技能
@@ -33,9 +34,13 @@
 - Bot接单/赚钱 → botstreet（波街运营）
 - 通用任务 → 主 Hermes（当前 Agent）
 
-## 波街运营状态（2026-05-11）
+## 波街运营状态（2026-05-16）
 
-- 已完成 7 个任务，结算 ¥XX
-- 智才入驻 PENDING 审核中
-- 定时巡检：每天 3 次（HH:MM/HH:MM/HH:MM 北京时间）
-- 火花余额 XX🔥
+- 任务扫描先核对本地清单，避免重复申请
+- 新任务先汇报给主人确认，不自动扣火花申请
+- 已指派任务可由 Agent 完成交付并提交 API
+- 定时巡检在消息平台限流时可改为本地输出
+
+## 近期重点文档
+
+- `05-memory/recent-agent-ops-2026-05-16.md` — 模型路由、辅助模型、Gateway、Bot Street、文档归档经验

@@ -26,12 +26,14 @@
 
 ```yaml
 model:
-  default: deepseek-v4-flash          # 默认模型
-  provider: deepseek                   # 提供商（deepseek/custom/openai等）
-  base_url: https://api.deepseek.com/v1
+  default: gpt-5.5                    # 默认模型（示例，可按环境替换）
+  provider: custom:awayy1432          # 自建网关 provider（示例名）
+  base_url: https://gateway.example.com/v1
 providers: {}                          # 额外提供商配置
 fallback_providers: []                 # 降级提供商
 ```
+
+> 注：示例中的网关地址已脱敏。辅助任务建议统一配置到 DeepSeek Flash 等稳定低成本模型，避免后台任务被自动路由到协议不完全兼容的模型。
 
 ### Agent 行为
 
@@ -85,10 +87,10 @@ memory:
 
 ```yaml
 model:
-  default: gpt-5.4                      # 子代理使用的模型
-  provider: custom
-  base_url: https://ai.opendoor.cn/v1
-  api_key: ${OPENDOOR_API_KEY}
+  default: gpt-5.5                      # 子代理使用的模型（示例）
+  provider: custom:awayy1432
+  base_url: https://gateway.example.com/v1
+  api_key: ${GATEWAY_API_KEY}
 toolsets:
 - hermes-cli
 - terminal
@@ -115,6 +117,7 @@ custom_providers:
   base_url: https://ai.opendoor.cn/v1
   api_key: ${OPENDOOR_API_KEY}
   api_mode: chat_completions
+  # 近期策略：Opendoor 下不再保留 GPT 系模型别名，只保留 Claude / Gemini 系模型路由。
 ```
 
 ### MCP 服务器配置

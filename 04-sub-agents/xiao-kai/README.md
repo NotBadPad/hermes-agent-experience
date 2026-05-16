@@ -1,6 +1,6 @@
 # 🤖 小开 — 代码专家
 
-> **模型**: gpt-5.4
+> **模型**: 自建网关模型（示例：gpt-5.5）
 > **角色**: 全栈代码开发 & 技术实现
 > **口号**: "代码写得快，Bug 追得勤"
 
@@ -14,8 +14,8 @@
 |------|------|
 | 子代理名称 | `xiao-kai` |
 | 英文名 | Xiao Kai / Code Engineer |
-| 底层模型 | gpt-5.4 |
-| API 提供商 | Opendoor（自定义） |
+| 底层模型 | 自建网关模型（示例：gpt-5.5） |
+| API 提供商 | 自建网关（脱敏示例） |
 | 核心能力 | 代码开发、项目构建、技术实现 |
 | 职责领域 | 前端/后端/脚本/工具/调试 |
 | 协作对象 | 主 Hermes、小富、小运 |
@@ -27,10 +27,10 @@
 ```yaml
 # ~/.hermes/profiles/xiao-kai/config.yaml
 model:
-  default: gpt-5.4
-  provider: custom
-  base_url: https://ai.opendoor.cn/v1
-  api_key: ${OPENDOOR_API_KEY}
+  default: gpt-5.5
+  provider: custom:awayy1432
+  base_url: https://gateway.example.com/v1
+  api_key: ${GATEWAY_API_KEY}
 
 toolsets:
   - hermes-cli
@@ -57,8 +57,10 @@ memory:
 
 ```bash
 # ~/.hermes/profiles/xiao-kai/.env
-OPENDOOR_API_KEY=***        # Opendoor API Key
+GATEWAY_API_KEY=***         # 自建网关 API Key
 ```
+
+> 近期策略：不再通过 Opendoor 调用 GPT 系模型；小开改走自建网关，Opendoor 只保留 Claude / Gemini 类路由。
 
 ---
 
@@ -180,7 +182,7 @@ OPENDOOR_API_KEY=***        # Opendoor API Key
 
 | 指标 | 参考值 |
 |------|--------|
-| 模型 | gpt-5.4 |
+| 模型 | 自建网关模型（示例：gpt-5.5） |
 | 上下文长度 | 128K tokens |
 | 单次任务最大轮次 | 90 |
 | 推荐任务类型 | 中大型代码项目 |
@@ -193,4 +195,4 @@ OPENDOOR_API_KEY=***        # Opendoor API Key
 1. **Token 消耗**：代码任务 token 消耗较大，注意控制单次任务范围
 2. **沙箱执行**：终端命令具备真实执行能力，避免在生产环境执行未经确认的命令
 3. **上下文管理**：大型项目建议拆分多个会话，避免超出上下文窗口
-4. **模型限制**：gpt-5.4 在超长代码理解和生成方面虽然优秀，但复杂业务建议分步进行
+4. **模型限制**：超长代码理解和生成任务建议分步进行，避免一次性塞入过大上下文
