@@ -1,5 +1,17 @@
 # 版本记录
 
+## [1.3.0] - 2026-07-05
+
+### 新增
+- 新增 `05-memory/recent-agent-ops-2026-07-05.md`，记录服务器公网 IP 变更后的 Hermes/SSH/NodeLite 联动排查经验。
+- 补充 NodeLite 节点离线但 Agent 仍在运行时的关键判断：`server notice unauthorized` / `websocket authentication rejected` 通常表示 token mismatch，而非网络故障。
+- 补充重新生成 install session、读取完整 token、远程 bootstrap agent、用服务端 `snapshot.json` 验证上线的流程。
+
+### 变更
+- README 近期更新增加 2026-07-05 运维经验入口。
+
+---
+
 ## [1.2.0] - 2026-05-16
 
 ### 新增
