@@ -43,5 +43,6 @@
 
 ## 近期重点文档
 
+- `05-memory/ai-video-generation-2026-07-08.md` — 参考角色提取、分镜图生成、Grok 分段图生视频、ffmpeg 拼接、抽帧验证与 BGM 混音经验
 - `05-memory/recent-agent-ops-2026-07-05.md` — 服务器 IP 漂移、SSH key 修复、NodeLite Agent token mismatch 重绑经验
 - `05-memory/recent-agent-ops-2026-05-16.md` — 模型路由、辅助模型、Gateway、Bot Street、文档归档经验

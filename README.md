@@ -40,6 +40,7 @@ hermes-agent-experience/
 
 ## 🆕 近期更新
 
+- [2026-07-08 AI 视频生成经验：参考角色 → 分镜图片 → Grok 图生视频](05-memory/ai-video-generation-2026-07-08.md)：原始视频抽帧提取角色、GPT 图片生成关键帧、Grok 分段图生视频、ffmpeg 拼接、抽帧验证和 BGM 混音经验。
 - [2026-07-05 运维经验：服务器 IP 漂移与 NodeLite Agent 重绑](05-memory/recent-agent-ops-2026-07-05.md)：SSH 别名更新、公钥登录修复、NodeLite `Unauthorized` 离线节点排查与重绑验证。
 - [2026-05-16 Agent 运行经验](05-memory/recent-agent-ops-2026-05-16.md)：Opendoor GPT 模型下线、辅助模型切 DeepSeek、Gateway 重启排查、Bot Street 交付与文档归档边界。
 
