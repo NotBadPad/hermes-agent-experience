@@ -28,7 +28,7 @@
 # ~/.hermes/profiles/xiao-kai/config.yaml
 model:
   default: gpt-5.5
-  provider: custom:awayy1432
+  provider: custom:gateway-example
   base_url: https://gateway.example.com/v1
   api_key: ${GATEWAY_API_KEY}
 

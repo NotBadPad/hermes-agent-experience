@@ -27,7 +27,7 @@
 ```yaml
 model:
   default: gpt-5.5                    # 默认模型（示例，可按环境替换）
-  provider: custom:awayy1432          # 自建网关 provider（示例名）
+  provider: custom:gateway-example  # 自建网关 provider（示例名）
   base_url: https://gateway.example.com/v1
 providers: {}                          # 额外提供商配置
 fallback_providers: []                 # 降级提供商
@@ -88,7 +88,7 @@ memory:
 ```yaml
 model:
   default: gpt-5.5                      # 子代理使用的模型（示例）
-  provider: custom:awayy1432
+  provider: custom:gateway-example
   base_url: https://gateway.example.com/v1
   api_key: ${GATEWAY_API_KEY}
 toolsets:

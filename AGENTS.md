@@ -1,6 +1,16 @@
 # AGENTS.md — Hermes Agent 经验分享（AI 入口）
 
+[简体中文](AGENTS.md) | [English](en/AGENTS.md)
+
 > 本文档面向 AI Agent。阅读后你将了解这个仓库的结构和核心内容。
+
+## 多语言维护
+
+- 简体中文是源语言，英文文档放在 `en/` 下并镜像原目录结构。
+- 修改中文文档时，同一个提交内同步更新英文版本。
+- 命令、路径、环境变量、API 字段和模型 ID 不做翻译。
+- 提交前运行 `python3 scripts/check_docs.py`。
+- 详细规则见 `LOCALIZATION.md`。
 
 ## 仓库定位
 

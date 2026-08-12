@@ -1,6 +1,10 @@
 # Hermes Agent 经验分享
 
+**简体中文** | [English](en/README.md)
+
 > 将 Hermes Agent 的配置、技能、子代理、记忆与实战经验整理成结构化知识库，方便人类和 AI Agent 共同阅读和复用。
+
+> 多语言维护规则见 [LOCALIZATION.md](LOCALIZATION.md)。当前维护简体中文与 English，英文目录与中文目录保持镜像结构。
 
 ## 📦 仓库结构
 
@@ -9,6 +13,9 @@ hermes-agent-experience/
 ├── README.md              ← 本文件，总览
 ├── AGENTS.md              ← AI Agent 入口（给AI读的版本）
 ├── CHANGELOG.md           ← 版本更新记录
+├── LOCALIZATION.md        ← 多语言目录约定与维护规则
+├── scripts/check_docs.py  ← Markdown、链接与翻译覆盖检查
+├── en/                    ← English 文档镜像
 │
 ├── 01-quick-start/        ← 快速上手
 ├── 02-configuration/      ← Hermes 配置详解
@@ -37,6 +44,15 @@ hermes-agent-experience/
 | 🧠 **记忆** | 服务器拓扑、项目经验、踩坑记录 |
 | 🔗 **集成** | 波街/虾345/graphify/TradingAgents 接入经验 |
 | 💡 **技巧** | prompt 技巧、MCP 集成、跨 agent 协作模式 |
+
+## 🌐 多语言文档
+
+| 语言 | 状态 | 入口 |
+|------|------|------|
+| 简体中文 | 源语言，持续维护 | [README.md](README.md) |
+| English | 完整镜像，持续维护 | [en/README.md](en/README.md) |
+
+中文内容更新时应同步修改 `en/` 下的对应文件。CI 会检查英文覆盖、本地链接和 Markdown 代码围栏。新增语言的方法见 [LOCALIZATION.md](LOCALIZATION.md)。
 
 ## 🆕 近期更新
 

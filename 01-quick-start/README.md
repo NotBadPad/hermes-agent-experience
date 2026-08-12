@@ -3,23 +3,20 @@
 ## 安装 Hermes
 
 ```bash
-# 方式一：pip 安装
-pip install hermes-agent
-
-# 方式二：源码安装
-git clone https://github.com/NousResearch/hermes-agent.git
-cd hermes-agent
-pip install -e .
+# Linux / macOS / WSL2 / Android（Termux）
+curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
 
 # 查看版本
-hermes version
+hermes --version
 ```
+
+Windows 与桌面端安装方式见 [Hermes 官方安装文档](https://hermes-agent.nousresearch.com/docs/getting-started/installation)。
 
 ## 初始化配置
 
 ```bash
 # 运行初始化向导
-hermes init
+hermes setup
 
 # 或手动创建基础配置
 mkdir -p ~/.hermes
@@ -27,15 +24,14 @@ mkdir -p ~/.hermes
 
 ## 设置模型提供商
 
-### DeepSeek（推荐入门）
+### 交互式选择 Provider
 
 ```bash
-# 设置 API Key
-export DEEPSEEK_API_KEY=sk-your-key-here
-
-# 配置模型
-hermes model set --provider deepseek --model deepseek-v4-flash
+# 选择 Provider、模型并保存配置
+hermes model
 ```
+
+也可以运行 `hermes setup model` 重新配置模型。API Key 放在 `~/.hermes/.env`，不要写进仓库。
 
 ### OpenAI 兼容接口
 
@@ -51,34 +47,22 @@ model:
 ## 创建第一个子代理
 
 ```bash
-# 创建子代理目录
-mkdir -p ~/.hermes/profiles/my-agent
-
-# 编写配置
-cat > ~/.hermes/profiles/my-agent/config.yaml << 'EOF'
-model:
-  default: deepseek-v4-flash
-  provider: deepseek
-  base_url: https://api.deepseek.com/v1
-toolsets:
-- hermes-cli
-- terminal
-- file
-agent:
-  max_turns: 90
-display:
-  personality: technical
-EOF
+# 创建独立 Profile
+hermes profile create my-agent
 
 # 验证
 hermes profile list
+
+# 使用该 Profile 启动会话
+hermes --profile my-agent
 ```
 
 ## 常用命令速查
 
 ```bash
-hermes -m "你的消息"              # 单次提问
-hermes -p my-agent "任务"         # 使用子代理
+hermes chat -q "你的消息"         # 单次提问
+hermes --profile my-agent          # 使用指定 Profile
+hermes setup                       # 配置向导
 hermes gateway start              # 启动Gateway
 hermes gateway status             # 查看Gateway状态
 hermes update                     # 更新Hermes
