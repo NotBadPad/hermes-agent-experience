@@ -46,6 +46,7 @@ hermes-agent-experience/
 
 ## Recent field notes
 
+- [Safe Hermes upgrades, config migration, and gateway diagnosis](05-memory/recent-agent-ops-2026-09-19.md)
 - [Hermes operations: cron delivery, providers, and health checks](05-memory/recent-agent-ops-2026-08-11.md)
 - [AI video generation: reference character to storyboard and video](05-memory/ai-video-generation-2026-07-08.md)
 - [Server IP drift and monitoring-agent rebind](05-memory/recent-agent-ops-2026-07-05.md)

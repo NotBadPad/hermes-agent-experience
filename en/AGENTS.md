@@ -43,6 +43,7 @@ These names and model choices are examples from one deployment. Readers should c
 
 ## High-value field notes
 
+- [`05-memory/recent-agent-ops-2026-09-19.md`](05-memory/recent-agent-ops-2026-09-19.md): safe upgrades, semantic porting of local patches, config migration, Gateway restart verification, layered gateway diagnosis, and disk-full authentication failures.
 - [`05-memory/recent-agent-ops-2026-08-11.md`](05-memory/recent-agent-ops-2026-08-11.md): separating cron execution, stored output, and message delivery; deterministic watchdogs; custom-provider visibility; credential pools; WAF false negatives; cross-model protocol fields; public redaction.
 - [`05-memory/ai-video-generation-2026-07-08.md`](05-memory/ai-video-generation-2026-07-08.md): reference-character extraction, storyboard generation, segmented image-to-video, frame checks, and audio mixing.
 - [`05-memory/recent-agent-ops-2026-07-05.md`](05-memory/recent-agent-ops-2026-07-05.md): SSH recovery after IP drift and monitoring-agent token rebind.

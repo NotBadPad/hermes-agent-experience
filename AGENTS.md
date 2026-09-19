@@ -53,6 +53,7 @@
 
 ## 近期重点文档
 
+- `05-memory/recent-agent-ops-2026-09-19.md` — 安全升级、本地补丁语义移植、配置迁移、Gateway 重启验证、网关分层排障和磁盘满导致的认证假限流
 - `05-memory/recent-agent-ops-2026-08-11.md` — Cron 执行/输出/投递分层诊断、确定性巡检、自定义 Provider 与凭据池、健康探针假故障、跨模型协议兼容和公开脱敏经验
 - `05-memory/ai-video-generation-2026-07-08.md` — 参考角色提取、分镜图生成、Grok 分段图生视频、ffmpeg 拼接、抽帧验证与 BGM 混音经验
 - `05-memory/recent-agent-ops-2026-07-05.md` — 服务器 IP 漂移、SSH key 修复、NodeLite Agent token mismatch 重绑经验

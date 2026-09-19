@@ -56,6 +56,7 @@ hermes-agent-experience/
 
 ## 🆕 近期更新
 
+- [2026-09-19 Hermes 运维经验：安全升级、配置迁移与网关排障](05-memory/recent-agent-ops-2026-09-19.md)：升级前备份、本地补丁语义移植、Doctor 配置迁移、Gateway 重启判定、网关分层诊断、磁盘满导致认证假限流及健康探针设计。
 - [2026-08-11 Hermes 运维经验：Cron、Provider 与健康检查](05-memory/recent-agent-ops-2026-08-11.md)：区分任务执行与消息投递、确定性巡检脚本、自定义 Provider 可见性与凭据池、WAF 假故障、跨模型推理字段兼容及脱敏检查。
 - [2026-07-08 AI 视频生成经验：参考角色 → 分镜图片 → Grok 图生视频](05-memory/ai-video-generation-2026-07-08.md)：原始视频抽帧提取角色、GPT 图片生成关键帧、Grok 分段图生视频、ffmpeg 拼接、抽帧验证和 BGM 混音经验。
 - [2026-07-05 运维经验：服务器 IP 漂移与 NodeLite Agent 重绑](05-memory/recent-agent-ops-2026-07-05.md)：SSH 别名更新、公钥登录修复、NodeLite `Unauthorized` 离线节点排查与重绑验证。

@@ -6,6 +6,7 @@
 |------|------|
 | `server-management.md` | 服务器管理踩坑记录与最佳实践 |
 | `lessons-learned.md` | 通用经验教训汇总 |
+| `recent-agent-ops-2026-09-19.md` | 安全升级、配置迁移、Gateway 重启与网关分层排障经验 |
 | `recent-agent-ops-2026-08-11.md` | Cron 投递、确定性巡检、自定义 Provider、健康检查与协议兼容经验 |
 | `ai-video-generation-2026-07-08.md` | 参考角色驱动的分镜与 AI 视频生成经验 |
 | `recent-agent-ops-2026-07-05.md` | SSH 与监控 Agent 重绑运维经验 |

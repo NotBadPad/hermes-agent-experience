@@ -2,6 +2,16 @@
 
 [简体中文](../CHANGELOG.md) | **English**
 
+## [2.1.0] - 2026-09-19
+
+### Added
+- Added `05-memory/recent-agent-ops-2026-09-19.md` covering safe Hermes upgrades, semantic porting after local-patch conflicts, config migration, and Gateway restart verification.
+- Added layered diagnosis for OpenAI-compatible gateway reachability, authentication, and model scheduling, plus disk-full failures disguised as auth rate limiting.
+- Added health-probe rules for HTTP status classification, WAF fingerprints, and stale process environments after key rotation.
+
+### Changed
+- Updated the Chinese and English README, AGENTS, and memory indexes.
+
 ## [2.0.0] - 2026-08-12
 
 ### Added
